@@ -1,0 +1,25 @@
+{
+  "runtime": "Net100",
+  "defaultVariables": null,
+  "documentGenerator": {
+    "fromDocument": {
+      "json": "Specs/server.api.json", 
+      "url": null,
+      "output": null
+    }
+  },
+  "codeGenerators": {
+    "openApiToCSharpController": {
+      "jsonLibrary": "SystemTextJson",
+      "controllerStyle": "Abstract",
+      "useCancellationToken": true,
+      "useActionResultType": true,
+      "aspNetCore": true,
+      "namespace": "KYC.Service.Controllers",
+      "output": "$(OutDir)Controllers.g.cs",
+      "generateModelClasses": true,
+      "modelNamespace": "KYC.Service.Models",
+      "routeNamingStrategy": "OperationId"
+    }
+  }
+}

@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>KYC</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="14.0.0"/>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.1"/>
+    <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="10.0.1"/>
+    <PackageReference Include="NeoSmart.Caching.Sqlite" Version="9.0.1"/>
+    <PackageReference Include="NSwag.MSBuild" Version="14.6.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.11"/>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="10.1.0"/>
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="10.1.0"/>
+    <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="10.0.1"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\KYC.Service\KYC.Service.csproj"/>
+    <Compile Remove="ExternalClients\**\*.g.cs"/>
+  </ItemGroup>
+
+  <PropertyGroup>
+    <NSwagGeneratedDir>Controllers</NSwagGeneratedDir>
+  </PropertyGroup>
+  
+  <Target Name="GenerateOpenApiControllers"
+          BeforeTargets="CoreCompile"
+          Inputs="$(MSBuildProjectDirectory)\server.nswag.json;$(MSBuildProjectDirectory)\Specs\server.api.json"
+          Outputs="$(NSwagGeneratedDir)\Controllers.g.cs"
+          Condition="'$(DesignTimeBuild)' != 'True'">
+
+      <!-- Run NSwag (use Net100 runner for .NET 10+) -->
+      <Exec WorkingDirectory="$(ProjectDir)"
+            Command="$(NSwagExe_Net100) run server.nswag.json /variables:OutDir=$(NSwagGeneratedDir)\"/>
+
+      <!-- Include generated code in this build -->
+      <ItemGroup>
+          <!-- Prevent the file from being compiled twice -->
+          <Compile Remove="$(NSwagGeneratedDir)\Controllers.g.cs"/>
+          <Compile Include="$(NSwagGeneratedDir)\Controllers.g.cs"/>
+          <FileWrites Include="$(NSwagGeneratedDir)\Controllers.g.cs"/>
+      </ItemGroup>
+  </Target>
+</Project>

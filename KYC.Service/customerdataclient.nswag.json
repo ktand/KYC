@@ -1,0 +1,18 @@
+{
+  "runtime": "Net100",
+  "defaultVariables": null,
+  "documentGenerator": {
+    "fromDocument": {
+      "url": "Specs/customerdata.api.json"
+    }
+  },
+  "codeGenerators": {
+    "openApiToCSharpClient": {
+      "jsonLibrary": "SystemTextJson",
+      "namespace": "KYC.Service.ExternalClients",
+      "className": "CustomerDataClient",
+      "injectHttpClient": true,
+      "output": "$(OutDir)CustomerData.Client.g.cs"
+    }
+  }
+}

@@ -1,0 +1,121 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+      "title": "KYC Aggregation API Service",
+      "description": "API for aggregating KYC (Know Your Customer) data",
+      "version": "1.0.0"
+    },
+    "paths": {
+      "/kyc-data/{ssn}": {
+        "get": {
+          "summary": "Get aggregated KYC data",
+          "operationId": "GetAggregatedKycData",
+          "tags": [
+            "KYC Aggregation"
+          ],
+          "parameters": [
+            {
+              "name": "ssn",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "description": "Social Security Number of the customer"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/AggregatedKycData"
+                  },
+                  "example": {
+                    "ssn": "19801115-1234",
+                    "first_name": "Lars",
+                    "last_name": "Larsson",
+                    "address": "Smågatan 1, 123 22 Malmö",
+                    "phone_number": "+46 70 123 45 67",
+                    "email": "lars.larsson@example.com",
+                    "tax_country": "SE",
+                    "income": 550000
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Customer data not found",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "error": "Customer data not found for the provided SSN."
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "error": "An unexpected error occurred while processing the request."
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "AggregatedKycData": {
+          "type": "object",
+          "properties": {
+            "ssn": {
+              "type": "string",
+              "example": "19830115-1234"
+            },
+            "first_name": {
+              "type": "string",
+              "example": "Sven"
+            },
+            "last_name": {
+              "type": "string",
+              "example": "Svensson"
+            },
+            "address": {
+              "type": "string",
+              "example": "Storgatan 1, 111 22 Stockholm"
+            },
+            "phone_number": {
+              "type": "string",
+              "example": "+46 70 123 45 67"
+            },
+            "email": {
+              "type": "string",
+              "example": "sven.svensson@example.com"
+            },
+            "tax_country": {
+              "type": "string",
+              "example": "SE"
+            },
+            "income": {
+              "type": "integer",
+              "nullable": true,
+              "example": 550000
+            }
+          },
+          "required": [
+            "first_name",
+            "last_name",
+            "address",
+            "ssn",
+            "tax_country"
+          ]
+        }
+      }
+    }
+  }

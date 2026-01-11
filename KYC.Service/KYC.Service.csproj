@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="10.0.1"/>
+    <PackageReference Include="NSwag.MSBuild" Version="14.6.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="ExternalClients\"/>
+  </ItemGroup>
+  
+  <PropertyGroup>
+    <NSwagGeneratedDir>ExternalClients</NSwagGeneratedDir>
+  </PropertyGroup>
+    
+    <Target Name="GenerateCustomerDataClient"
+            BeforeTargets="CoreCompile"
+            Inputs="$(MSBuildProjectDirectory)\customerdataclient.nswag.json;$(MSBuildProjectDirectory)\Specs\customerdata.api.json"
+            Outputs="$(NSwagGeneratedDir)\CustomerData.Client.g.cs"
+            Condition="'$(DesignTimeBuild)' != 'True'">
+    
+      <!-- Run NSwag (use Net100 runner for .NET 10+) -->
+        <Exec WorkingDirectory="$(ProjectDir)"
+              Command="$(NSwagExe_Net100) run customerdataclient.nswag.json /variables:OutDir=$(NSwagGeneratedDir)\"/>
+
+        <!-- Include generated code in this build -->
+        <ItemGroup>
+            <!-- Prevent the file from being compiled twice -->
+            <Compile Remove="$(NSwagGeneratedDir)\CustomerData.Client.g.cs"/>
+            <Compile Include="$(NSwagGeneratedDir)\CustomerData.Client.g.cs"/>
+            <FileWrites Include="$(NSwagGeneratedDir)\CustomerData.Client.g.cs"/>
+    </ItemGroup>
+</Target>
+</Project>

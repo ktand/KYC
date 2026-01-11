@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KYC.Api", "KYC.Api\KYC.Api.csproj", "{C40FBB8F-FA58-4AAB-9F13-3B93FBE6ED66}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KYC.Service", "KYC.Service\KYC.Service.csproj", "{936ACE2F-1222-4FFE-8718-8110D6A8C60D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KYC.Service.Tests", "KYC.Service.Tests\KYC.Service.Tests.csproj", "{0101F9FC-E43E-433B-A4CA-D5D75FE8BB46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KYC.Api.Tests", "KYC.Api.Tests\KYC.Api.Tests.csproj", "{CBE138AB-FABD-4875-B415-60E8B3816981}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C40FBB8F-FA58-4AAB-9F13-3B93FBE6ED66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C40FBB8F-FA58-4AAB-9F13-3B93FBE6ED66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C40FBB8F-FA58-4AAB-9F13-3B93FBE6ED66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C40FBB8F-FA58-4AAB-9F13-3B93FBE6ED66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{936ACE2F-1222-4FFE-8718-8110D6A8C60D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{936ACE2F-1222-4FFE-8718-8110D6A8C60D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{936ACE2F-1222-4FFE-8718-8110D6A8C60D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{936ACE2F-1222-4FFE-8718-8110D6A8C60D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0101F9FC-E43E-433B-A4CA-D5D75FE8BB46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0101F9FC-E43E-433B-A4CA-D5D75FE8BB46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0101F9FC-E43E-433B-A4CA-D5D75FE8BB46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0101F9FC-E43E-433B-A4CA-D5D75FE8BB46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBE138AB-FABD-4875-B415-60E8B3816981}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBE138AB-FABD-4875-B415-60E8B3816981}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBE138AB-FABD-4875-B415-60E8B3816981}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBE138AB-FABD-4875-B415-60E8B3816981}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
